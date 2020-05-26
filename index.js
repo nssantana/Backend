@@ -15,8 +15,8 @@ mongoose.connect('mongodb://localhost:27017/todo', {
     console.log(err);
 }) 
 
-app.use(routes);
 app.use(bodyParser.json());
+app.use(routes);
 
 const port = process.env.NODE_ENV === "dev" ? 8000 : process.env.PORT;
 
