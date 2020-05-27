@@ -9,5 +9,6 @@ router.post('/list/:list/task', validate(taskValidation), listController.addTask
 router.delete('/list/:list/task/:task', listController.removeTask);
 router.patch('/task/:task', taskController.switchTaskStatus);
 router.get('/list/:list',listController.getListById)
+router.delete('/list/:list/remove', listController.removeList)
 
 module.exports = router;

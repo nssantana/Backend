@@ -64,3 +64,18 @@ exports.removeTask = async (request, response) => {
         return response.json({ success: false, error: error.message });   
     }
 }
+
+exports.removeList = async (request, response) =>{
+    try {   
+        const data = await List.findById( { _id: request.params.list}).populate('task')
+        if (data.task) {
+            data.task.forEach(async (task) => {
+                await Task.deleteOne({_id:task._id})
+            });
+        }    
+        await data.delete()
+        return response.json({ success: true, list: data });
+    } catch (error) {
+        return response.json({ success: false, error: error.message });   
+    }
+}

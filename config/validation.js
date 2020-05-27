@@ -14,7 +14,7 @@ exports.validate = (validations) => {
 };
 
 exports.listValidation = [
-    check('name').isEmpty(),
+    check('name').notEmpty(),
     check('created').isISO8601()
 ];
 
