@@ -8,5 +8,6 @@ router.post('/list', validate(listValidation), listController.newList);
 router.post('/list/:list/task', validate(taskValidation), listController.addTaskToList);
 router.delete('/list/:list/task/:task', listController.removeTask);
 router.patch('/task/:task', taskController.switchTaskStatus);
+router.get('/list/:list',listController.getListById)
 
 module.exports = router;

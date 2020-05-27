@@ -6,8 +6,13 @@ exports.getList = async function (request, response) {
     return response.send(data);
 }
 
-exports.getListById = function (request, response) {
-    return response.send( { nome: "Victor"} );
+exports.getListById = async function (request, response) {
+    try {
+        const data = await List.findById( { _id: request.params.list}).populate('task')
+        return response.json({list: data})   
+    } catch (error) {
+        return response.json({success: false, error: error.message});  
+    }
 }
 
 exports.newList = async (request, response) => {
