@@ -8,7 +8,7 @@ dotenv.config();
 
 const host = (process.env.NODE_ENV==="dev") ? 'mongodb://localhost:27017/todo': process.env.MONGO_STRING
 
-mongoose.connect('mongodb://localhost:27017/todo', { 
+mongoose.connect(host, { 
     useNewUrlParser: true,
     useUnifiedTopology: true  
 }).then(() => {
