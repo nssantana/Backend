@@ -1,16 +1,27 @@
-fdhjsaflkhasdlkfjhasdklfjhsdlk
-sdalfnsadlkfnhksdafhlaksdf
-asdfjsdçflajçsdfjasdlfj
-sdf.sdafalkfnjalsçdkjfndakslf
-console.log('Hello World');
+const express = require('express');
+const app = express();
+const routes = require('./routes/listRoute.js');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+dotenv.config();
 
-aaaaaaaaaaaaaaa
+const host = (process.env.NODE_ENV==="dev") ? 'mongodb://localhost:27017/todo': process.env.MONGO_STRING
 
-kkkkkkkkkkkkkkkk
+mongoose.connect('mongodb://localhost:27017/todo', { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true  
+}).then(() => {
+    console.log("Connectou ao banco");
+}).catch((err) => {
+    console.log(err);
+}) 
 
-123456789
+app.use(bodyParser.json());
+app.use(routes);
 
-html é linguagem
-asldfnlksdjfnçlkkasdfjçlasdfjçsdaf
-asdfjçsldafjdlkçfjçsdlfja
-ROBSON CERTO
+const port = process.env.NODE_ENV === "dev" ? 8000 : process.env.PORT;
+
+app.listen(port, function () {
+    console.log(`Servidor iniciado na porta http://localhost:${port}`);
+})
