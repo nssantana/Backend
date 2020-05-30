@@ -3,7 +3,9 @@ const Task = require('./taskModel.js');
 
 let listSchema = mongoose.Schema({
     name: String,
-    created: Date,
+    created: {
+        type: Date
+    },
     task: [{
         type: mongoose.Schema.Types.ObjectId, ref: 'Task'
     }]

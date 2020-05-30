@@ -19,7 +19,7 @@ exports.newList = async (request, response) => {
     try {
         const data = await List.create({
             name: request.body.name,
-            created: request.body.created
+            created: new Date()
         });
 
         if (request.body.task) {
