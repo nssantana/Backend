@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 dotenv.config();
+const cors = require('cors');
 
 const host = (process.env.NODE_ENV==="dev") ? 'mongodb://localhost:27017/todo': process.env.MONGO_STRING
 
@@ -17,6 +18,7 @@ mongoose.connect(host, {
     console.log(err);
 }) 
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(routes);
 
