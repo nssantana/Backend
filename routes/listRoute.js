@@ -7,7 +7,7 @@ router.get('/', listController.getList);
 router.post('/list', validate(listValidation), listController.newList);
 router.post('/list/:list/task', validate(taskValidation), listController.addTaskToList);
 router.delete('/list/:list/task/:task', listController.removeTask);
-router.put('/list/task/:task', listController.editTask);
+router.put('/list/task/:task', validate(taskValidation) ,listController.editTask);
 router.patch('/task/:task', taskController.switchTaskStatus);
 router.get('/list/:list',listController.getListById)
 router.delete('/list/:list/remove', listController.removeList)
