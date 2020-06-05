@@ -65,6 +65,16 @@ exports.removeTask = async (request, response) => {
     }
 }
 
+exports.editTask = async (request, response) => {
+    try {   
+        const task = await Task.findOneAndUpdate({_id: request.params.task}, request.body);
+
+        return response.json({ success: true, task: task });
+    } catch (error) {
+        return response.json({ success: false, error: error.message });   
+    }
+}
+
 exports.removeList = async (request, response) =>{
     try {   
         const data = await List.findById( { _id: request.params.list}).populate('task')
