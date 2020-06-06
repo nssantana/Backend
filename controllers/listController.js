@@ -66,9 +66,9 @@ exports.removeTask = async (request, response) => {
 }
 
 exports.editTask = async (request, response) => {
-    try {   
-        const task = await Task.findOneAndUpdate({_id: request.params.task}, request.body);
-
+    try {  
+        const update = request.body.task[0]
+        const task = await Task.findOneAndUpdate({ _id: request.params.task },update)
         return response.json({ success: true, task: task });
     } catch (error) {
         return response.json({ success: false, error: error.message });   

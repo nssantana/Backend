@@ -17,6 +17,10 @@ exports.listValidation = [
     check('name').notEmpty()    
 ];
 
+exports.updateValidation = [
+    check('task').notEmpty()   
+];
+
 exports.taskValidation = [
     check("task").custom(field => {
         if (field.length < 1) {
